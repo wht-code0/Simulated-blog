@@ -30,44 +30,45 @@
       </div> -->
       <div class="row">
         <div class="col-md-4">
-          <form>
+          <form id="formdate">
             <h2>添加新用户</h2>
             <div class="form-group">
               <label>头像</label>
               <div class="form-group">
                 <label class="form-image">
                   <input id="avatar" type="file">
-                  <img src="../assets/img/default.png">
+                  <img src="../assets/img/default.png" id="preview">
                   <i class="mask fa fa-upload"></i>
+                  <input type="hidden" name="avatar" id="hiddenAvatar">
                 </label>
               </div>
             </div>
             <div class="form-group">
               <label>邮箱</label>
-              <input class="form-control" type="email" placeholder="请输入邮箱">
+              <input class="form-control" type="email" placeholder="请输入邮箱" name="email">
             </div>
             <div class="form-group">
               <label>昵称</label>
-              <input class="form-control" type="text" placeholder="请输入昵称">
+              <input class="form-control" type="text" placeholder="请输入昵称" name="nickName">
             </div>
             <div class="form-group">
               <label>密码</label>
-              <input class="form-control" type="text" placeholder="请输入密码">
+              <input class="form-control" type="text" placeholder="请输入密码" name="password">
             </div>
             <div class="form-group">
               <div class="radio-inline">
-                <label><input type="radio">未激活</label>
+                <label><input type="radio" name="status" value="0">未激活</label>
               </div>
               <div class="radio-inline">
-                <label><input type="radio">激活</label>
+                <label><input type="radio" name="status" value="1">激活</label>
               </div>
             </div>
             <div class="form-group">
               <div class="radio-inline">
-                <label><input type="radio">超级管理员</label>
+                <label><input type="radio" name="role" value="admin">超级管理员</label>
               </div>
               <div class="radio-inline">
-                <label><input type="radio">普通用户</label>
+                <label><input type="radio" name="role" value="normal">普通用户</label>
               </div>
             </div>
             <div class="form-group">
@@ -176,5 +177,6 @@
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script>NProgress.done()</script>
+  <script src="../assets/js/user.js"></script>
 </body>
 </html>
