@@ -33,7 +33,7 @@
         <strong>错误！</strong>发生XXX错误
       </div> -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" id="modifyBox">
           <form id="formdate">
             <h2>添加新用户</h2>
             <div class="form-group">
@@ -149,6 +149,8 @@
   <script>
     NProgress.done()
   </script>
+
+  <!-- 创建用户模板 -->
   <script type="text/html" id="userTpl">
     {{each data v}}
     <tr>
@@ -163,12 +165,62 @@
       <td>{{v.status == 0 ? '未激活':'激活'}}</td>
       <td>{{v.role == 'admin' ? '超级管理员':'普通用户'}}</td>
       <td class="text-center">
-        <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-        <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+        <a href="javascript:;" class="btn btn-default btn-xs edit" data-id="{{v._id}}">编辑</a>
+        <a href="javascript:;" class="btn btn-danger btn-xs del" data-id="{{v._id}}">删除</a>
       </td>
     </tr>
     {{/each}}
   </script>
+
+  <!-- 编辑用户模板 -->
+  <script type="text/html" id="modifyTpl">
+    <form id="formdate" data-id='{{_id}}'>
+      <h2>修改用户信息</h2>
+      <div class="form-group">
+        <label>头像</label>
+        <div class="form-group">
+          <label class="form-image">
+            <input id="avatar" type="file">
+            {{if avatar}}
+            <img src="{{avatar}}" id="preview">
+            {{else}}
+            <img src="../assets/img/default.png" id="preview">
+            {{/if}}
+            <i class="mask fa fa-upload"></i>
+            <input type="hidden" name="avatar" id="hiddenAvatar" value="{{avatar}}">
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>邮箱</label>
+        <input class="form-control" type="email" placeholder="请输入邮箱" name="email" value="{{email}}">
+      </div>
+      <div class="form-group">
+        <label>昵称</label>
+        <input class="form-control" type="text" placeholder="请输入昵称" name="nickName" value="{{nickName}}">
+      </div>
+      <div class="form-group">
+        <div class="radio-inline">
+          <label><input type="radio" name="status" value="0" {{status ==0 ? "checked" : ""}}>未激活</label>
+        </div>
+        <div class="radio-inline">
+          <label><input type="radio" name="status" value="1" {{status ==1 ? "checked" : ""}}>激活</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="radio-inline">
+          <label><input type="radio" name="role" value="admin" {{role == "admin" ? "checked" : ''}}>超级管理员</label>
+        </div>
+        <div class="radio-inline">
+          <label><input type="radio" name="role" value="normal" {{role == "normal" ? "checked" : ''}}>普通用户</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">修改</button>
+      </div>
+    </form>
+  </script>
+
   <script src="../assets/js/user.js"></script>
 
 </body>

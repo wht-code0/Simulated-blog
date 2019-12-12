@@ -44,3 +44,16 @@ $('#avatar').on('change', function () {
         }
     });
 })
+
+$('#userBox').on('click', '.edit', function () {
+    var id = $(this).attr('data-id');
+    $.ajax({
+        type: "get",
+        url: "/users/" + id,
+        success: function (response) {
+            console.log(response);
+            var html = template('modifyTpl',response);
+            $('#modifyBox').html(html);
+        }
+    });
+})
