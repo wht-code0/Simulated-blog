@@ -26,7 +26,7 @@ $.ajax({
     }
 });
 
-$('#avatar').on('change', function () {
+$('#modifyBox').on('change','#avatar', function () {
     var formData = new FormData();
     formData.append('avatar', this.files[0]);
 
@@ -52,8 +52,23 @@ $('#userBox').on('click', '.edit', function () {
         url: "/users/" + id,
         success: function (response) {
             console.log(response);
-            var html = template('modifyTpl',response);
+            var html = template('modifyTpl', response);
             $('#modifyBox').html(html);
         }
     });
+})
+
+$('#modifyBox').on('submit', '#modifyForm', function () {
+    var formData = $(this).serialize();
+    var id = $(this).attr('data-id');
+    $.ajax({
+        type: "put",
+        url: "/users/" + id,
+        data: formData,
+        success: function (response) {
+            location.reload();
+        }
+    });
+
+    return false;
 })
