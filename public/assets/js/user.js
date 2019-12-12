@@ -15,6 +15,17 @@ $('#formdate').on('submit', function () {
     return false;
 })
 
+$.ajax({
+    type: "get",
+    url: "/users",
+    success: function (response) {
+        let html = template('userTpl', {
+            data: response
+        });
+        $('#userBox').html(html);
+    }
+});
+
 $('#avatar').on('change', function () {
     var formData = new FormData();
     formData.append('avatar', this.files[0]);
@@ -23,10 +34,12 @@ $('#avatar').on('change', function () {
         type: "post",
         url: "/upload",
         data: formData,
+        // 告诉$ajax方法不要解析请求参数
         processData: false,
+        //告诉$ajax方法不要设置请求参数的类型
         contentType: false,
         success: function (response) {
-            $('#preview').attr('src',response[0].avatar);
+            $('#preview').attr('src', response[0].avatar);
             $('#hiddenAvatar').val(response[0].avatar);
         }
     });
