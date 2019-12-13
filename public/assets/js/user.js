@@ -79,10 +79,59 @@ $('#modifyBox').on('submit', '#modifyForm', function () {
 $('#userBox').on('click', '.del', function () {
     var isConfirm = confirm('您确定要删除吗？');
     var id = $(this).attr('data-id');
-    if(isConfirm){
+    if (isConfirm) {
         $.ajax({
             type: "delete",
             url: "/users/" + id,
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
+})
+
+// 批量删除
+var statusAll = $('#statusAll');
+var delMany = $('#delMany');
+statusAll.on('change', function () {
+    var status = $(this).prop('checked');
+    $('#userBox').find('input').prop('checked', status);
+    if (status) {
+        delMany.show();
+    } else {
+        delMany.hide();
+    }
+})
+
+$('#userBox').on('change', '.userStatus', function () {
+    var inputs = $('#userBox').find('input');
+    var users = inputs.filter(':checked').length;
+
+    if (inputs.length == users) {
+        statusAll.prop('checked', true);
+    } else {
+        statusAll.prop('checked', false);
+    }
+
+    if (users > 0) {
+        delMany.show();
+    } else {
+        delMany.hide();
+    }
+})
+
+// 批量删除按钮
+delMany.on('click', function () {
+    var ids = [];
+    var checkedUser = $('#userBox').find('input').filter(':checked');
+    checkedUser.each(function (index, element) {
+        ids.push($(element).attr('data-id'));
+    });
+
+    if(confirm("您确定要批量删除吗？")){
+        $.ajax({
+            type: "delete",
+            url: "/users/" + ids.join('-'),
             success: function (response) {
                 location.reload();
             }

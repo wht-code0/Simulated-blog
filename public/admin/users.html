@@ -83,12 +83,12 @@
         <div class="col-md-8">
           <div class="page-action">
             <!-- show when multiple checked -->
-            <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
+            <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none" id="delMany">批量删除</a>
           </div>
           <table class="table table-striped table-bordered table-hover">
             <thead>
               <tr>
-                <th class="text-center" width="40"><input type="checkbox"></th>
+                <th class="text-center" width="40"><input type="checkbox" id="statusAll"></th>
                 <th class="text-center" width="80">头像</th>
                 <th>邮箱</th>
                 <th>昵称</th>
@@ -154,7 +154,7 @@
   <script type="text/html" id="userTpl">
     {{each data v}}
     <tr>
-      <td class="text-center"><input type="checkbox"></td>
+      <td class="text-center"><input type="checkbox" class="userStatus" data-id="{{v._id}}"></td>
       <td class="text-center">
         {{if v.avatar}}
         <img class="avatar" src="{{v.avatar}}">
