@@ -1,9 +1,9 @@
-<script src="/login/status"></script>
+<!-- <script src="/login/status"></script>
 <script>
   if (!isLogin) {
     location.href = '/admin/login.html';
   }
-</script>
+</script> -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -120,7 +120,7 @@
       <td class="text-center">{{$imports.formteDate(v.createAt)}}</td>
       <td class="text-center">{{v.state==1 ? '已发布' : '未发布'}}</td>
       <td class="text-center">
-        <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
+        <a href="post-add.html?id={{v._id}}" class="btn btn-default btn-xs">编辑</a>
         <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
       </td>
     </tr>
