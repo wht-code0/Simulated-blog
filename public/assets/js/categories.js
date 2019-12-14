@@ -25,6 +25,11 @@ $.ajax({
         $('#cateBox').html(html);
     }
 });
+// 处理日期格式
+function formteDate(date) {
+    date = new Date(date);
+    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+}
 
 // 为编辑按钮添加事件
 $("#cateBox").on('click', '.edit', function () {
