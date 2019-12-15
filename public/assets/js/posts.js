@@ -64,3 +64,17 @@ $('#categoryForm').on('submit', function () {
     });
     return false;
 })
+
+// 点击删除按钮
+$('#postsBox').on('click', '.del', function () {
+    var id = $(this).attr('data-id');
+    if(confirm('您确定要删除此文章吗？')){
+        $.ajax({
+            type: "delete",
+            url: "/posts/" + id,
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
+})
