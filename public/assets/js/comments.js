@@ -4,8 +4,17 @@ $.ajax({
     success: function (response) {
         var html = template('commentsTpl', response);
         $('#commentsBox').html(html);
-        var page = template('pageTpl', response);
-        $('#pageBox').html(page);
+        $('#pageBox').twbsPagination({
+            totalPages: response.pages,
+            visiblePages: 5,
+            first: '首页',
+            prev: '上一页',
+            next: '下一页',
+            last: '尾页',
+            onPageClick: function (event, page) {
+                changePage(page);
+            }
+        });
     }
 });
 
@@ -21,8 +30,7 @@ function changePage(page) {
         success: function (response) {
             var html = template('commentsTpl', response);
             $('#commentsBox').html(html);
-            var page = template('pageTpl', response);
-            $('#pageBox').html(page);
+
         }
     });
 }

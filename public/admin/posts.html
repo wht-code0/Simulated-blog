@@ -1,9 +1,9 @@
-<!-- <script src="/login/status"></script>
+<script src="/login/status"></script>
 <script>
   if (!isLogin) {
     location.href = '/admin/login.html';
   }
-</script> -->
+</script>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -109,7 +109,9 @@
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script src="../assets/vendors/art-template/template-web.js"></script>
+  <script src="../assets/vendors/twbs-pagination/jquery.twbsPagination.min.js"></script>
   <script src="../assets/js/posts.js"></script>
+  <script src="../assets/js/common.js"></script>
 
   <script type="text/html" id="postsTpl">
     {{each records v}}
@@ -125,18 +127,6 @@
       </td>
     </tr>
     {{/each}}
-  </script>
-
-  <script type="text/html" id="pagesTpl">
-    {{if page>1}}
-    <li><a href="javascript:;" onclick="changePage({{page-1}})">上一页</a></li>
-    {{/if}}
-    {{each display v}}
-    <li><a href="javascript:;" onclick="changePage({{v}})">{{v}}</a></li>
-    {{/each}}
-    {{if page < pages}}
-    <li><a href="javascript:;" onclick="changePage({{page+1}})">下一页</a></li>
-    {{/if}}
   </script>
 
   <script type="text/html" id="categoriesTpl">

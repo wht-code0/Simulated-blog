@@ -6,8 +6,17 @@ $.ajax({
         var html = template('postsTpl', response);
         $("#postsBox").html(html);
 
-        var page = template('pagesTpl', response);
-        $('#page').html(page);
+        $('#page').twbsPagination({
+            totalPages: response.pages,
+            visiblePages: 5,
+            first: '首页',
+            prev: '上一页',
+            next: '下一页',
+            last: '尾页',
+            onPageClick: function (event, page) {
+                changePage(page);
+            }
+        });
     }
 });
 
@@ -28,8 +37,6 @@ function changePage(page) {
         success: function (response) {
             var html = template('postsTpl', response);
             $("#postsBox").html(html);
-            var page = template('pagesTpl', response);
-            $('#page').html(page);
         }
     });
 }
